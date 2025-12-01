@@ -1,26 +1,7 @@
 # VitalFlow-Real-Time-ICU-Data-Pipeline
 
 1. Project Overview
-VitalFlow is a robust, modular Data Engineering pipeline designed for the healthcare sector. It simulates a high-velocity IoT environment (Intensive Care Unit) where patient vitals are continuously monitored.
 
-The system is designed to ingest raw sensor data, enforce strict data quality contracts, quarantine erroneous records, and aggregate clean data into a "Gold" layer suitable for Business Intelligence (BI) and analytics.
-
-Key Features:
-
-Resilience: Implements custom retry logic with exponential backoff for database stability.
-
-Data Quality: Automatically segregates data into "Silver" (Valid) and "Quarantine" (Invalid) tables.
-
-Observability: Comprehensive logging and operation timers to track pipeline performance.
-
-Incremental Loading: Uses watermark logic to fetch only new data since the last successful run.
-
-Here is the comprehensive documentation for the VitalFlow project based on the code provided.
-
-VitalFlow: Real-Time ICU Data Pipeline
-Project Documentation v1.0
-
-1. Project Overview
 VitalFlow is a robust, modular Data Engineering pipeline designed for the healthcare sector. It simulates a high-velocity IoT environment (Intensive Care Unit) where patient vitals are continuously monitored.
 
 The system is designed to ingest raw sensor data, enforce strict data quality contracts, quarantine erroneous records, and aggregate clean data into a "Gold" layer suitable for Business Intelligence (BI) and analytics.
@@ -36,6 +17,7 @@ Observability: Comprehensive logging and operation timers to track pipeline perf
 Incremental Loading: Uses watermark logic to fetch only new data since the last successful run.
 
 2. System Requirements
+
 Python Version: Python 3.8 or higher.
 
 Operating System: Cross-platform (Windows, macOS, Linux).
@@ -52,6 +34,7 @@ VF_BATCH_SIZE: Number of records to simulate per run (Default: 100)
 VF_LOG_LEVEL: Logging verbosity (Default: INFO)
 
 3. Libraries & Dependencies
+
 To run this pipeline, you must install the following external libraries. Standard libraries (like os, time, logging, sqlite3) are included with Python.
 
 requirements.txt
@@ -61,6 +44,7 @@ numpy>=1.20.0
 sqlalchemy>=1.4.0
 
 4. Workflow & Architecture
+
 The pipeline follows a standard ELT (Extract, Load, Transform) pattern with an embedded Quality Gate.
 
 Step 1: Initialization
@@ -103,6 +87,7 @@ Calculates AVG and MAX heart rates.
 This table (gold_patient_hourly) is optimized for dashboarding tools (e.g., Tableau, PowerBI, Streamlit).
 
 5. Code Structure
+
 IoTGeneratorSimulates the external data source (Sensors). Handles cold starts vs. incremental fetches.QualityGateActs as the firewall for data quality.
 
 Returns two dataframes: clean_df and error_df.DataWarehouseManages SQL connections, executes loads, and handles ELT transformations.
@@ -110,6 +95,7 @@ Returns two dataframes: clean_df and error_df.DataWarehouseManages SQL connectio
 Includes retry logic.VitalFlowPipelineThe orchestrator. Ties all classes together and manages the flow of execution.
 
 6. Future Work & Roadmap
+
 To promote this project from a local prototype to a production-grade enterprise system, the following improvements are recommended:
 
 Database Migration:
